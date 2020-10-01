@@ -14,7 +14,6 @@ class Database{
             $this->conn = null;
 
             try{
-
                 $this->conn = new \PDO("mysql:host=" .$this->options['host'], $this->options['user'], $this->options['password'],$this->options['options']);
 
             }catch(PDOException $exception){
