@@ -30,7 +30,7 @@ var app1 = new Vue({
         },
         getAxios: function(id){
             axios
-            .get('http://localhost/apiPHP/main.php/list',{ })
+            .get('/apiPHP/main.php/list',{ })
             .then(response => {
                 if (response.status != "200") alert("ATTENZIONE: Status "+response.status);
                 this.beerList = response.data.beer;
@@ -49,7 +49,7 @@ var app1 = new Vue({
             }
 
             axios
-            .post('http://localhost/apiPHP/main.php/insert',{
+            .post('/apiPHP/main.php/insert',{
                     beerName:this.beerName,
                     beerDescription:this.beerDescription,
                     beerStyle:this.beerStyle,
@@ -76,7 +76,7 @@ var app1 = new Vue({
                 }
 
                 axios
-                .delete('http://localhost/apiPHP/main.php/delete/'+this.beerId,{})
+                .delete('/apiPHP/main.php/delete/'+this.beerId,{})
                 .then(response => {
                     if (response.status != "200") alert("ATTENZIONE: Status "+response.status);
                     if (response.data.countBeer == 1) alert("Record eliminato correttamente");
@@ -93,7 +93,7 @@ var app1 = new Vue({
                 },
                 putAxios: function(){
                     axios
-                    .put('http://localhost/apiPHP/main.php/update/'+this.beerId,{
+                    .put('/apiPHP/main.php/update/'+this.beerId,{
                         beerName:this.beerName,
                         beerDescription:this.beerDescription,
                         beerStyle:this.beerStyle
