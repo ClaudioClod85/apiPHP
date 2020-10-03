@@ -5,6 +5,7 @@ return [
     [
         'GET' => [
             __PATH_FOLDER__.'/main.php/list' => 'app\controllers\BeerController@listBeer',
+            __PATH_FOLDER__.'/main.php/list/:id' => 'app\controllers\BeerController@loadBeer',
         ],
         'POST' => [
             __PATH_FOLDER__.'/main.php/insert' => 'app\controllers\BeerController@insertBeer',

@@ -2,9 +2,9 @@
 return[
     'driver' => 'PDO',
     'host' => 'localhost',
-    'user' =>  'root',
+    'user' =>  'user',
     'password' =>  'Centos7,29',
-    'database' => '',
+    'database' => 'apiPHP',
     'port' => '3306',
     'options' => [
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

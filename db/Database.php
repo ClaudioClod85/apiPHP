@@ -14,7 +14,7 @@ class Database{
             $this->conn = null;
 
             try{
-                $this->conn = new \PDO("mysql:host=" .$this->options['host'], $this->options['user'], $this->options['password'],$this->options['options']);
+                $this->conn = new \PDO("mysql:host=" .$this->options['host'].";dbname=".$this->options['database'], $this->options['user'], $this->options['password'],$this->options['options']);
 
             }catch(PDOException $exception){
                 echo "Connection error: " . $exception->getMessage();

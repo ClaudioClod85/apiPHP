@@ -11,22 +11,80 @@
 <!-- 	<meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
 
 	<!-- BOOTSTRAP -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
+<body>
+
+<div id="appTable" class="container-fluid" >
+	<h2>Elenco delle birre</h2>
+	<div class="row">
+
+		<div class="col-sm ">
+			<table class="table table-hover table-dark table-sm">
+				<thead>
+					<tr v-if="index <= 0"  v-for="(beer,index) in beerList" :key="beer.id" >
+						<th v-if="index === 0" v-for="(beerField,key,i) in beer" scope="col" class="text-center">
+							{{key}}
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(beer,index) in beerList" @click="selectId(beer)" :key="beer.beerId" class="main_row" style="cursor:pointer;" >
+						<td v-for="(listaField,key,i) in beer" align="center" >{{listaField}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<hr/>
+	<h2>Inserisci o modifica una birra</h2>
+	<div class="row">
+		<div class="col-sm input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
+		  </div>
+		  <input type="text" class="form-control" aria-label="Default"  v-model="beerName" aria-describedby="inputGroup-sizing-default">
+		  <input type="hidden" class="form-control" aria-label="Default" v-model="beerId" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="col-sm input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="inputGroup-sizing-default">Stile</span>
+		  </div>
+		  <input type="text" class="form-control" aria-label="Default" v-model="beerStyle"  aria-describedby="inputGroup-sizing-default">
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-sm input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="inputGroup-sizing-default">Descrizione</span>
+		  </div>
+		  <input type="text" class="form-control" aria-label="Default" v-model="beerDescription" aria-describedby="inputGroup-sizing-default">
+		</div>
+
+	</div>
 
 
-
-
-<div class="" >
-	<button type="button" class="" id="test" name="test" onclick="call()">TEST</button>
-
+	<hr/>
+	<div class="row" >
+		<div class="col-sm ">
+			<button v-if=" beerId =='' " type="button" class="btn btn-primary btn-lg" @click="postAxios()">INSERT</button>
+			<button v-if=" beerId !='' " type="button" class="btn btn-danger btn-lg"  @click="deleteAxios()">DELETE</button>
+			<button v-if=" beerId !='' " type="button" class="btn btn-warning btn-lg" @click="putAxios()">UPDATE</button>
+			<button type="button" class="btn btn-info btn-lg" @click="resetField()">CLEAN FIELD</button>
+		</div>
+	</div>
 </div>
 
+</body>
 
 
-
+<!-- VuE JS -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
 <script src="../js/function.js"></script>
 

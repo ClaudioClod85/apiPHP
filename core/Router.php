@@ -54,7 +54,9 @@ class Router {
                 $pattern = "@^" .$subPattern. "$@D";
 
                 $matches = Array();
+
                 // check if the current request matches the expression
+                //echo "$pattern||$uri|||$matches|||";
                 if(preg_match($pattern, $uri, $matches)){
                     // remove the first match
                     array_shift($matches);
