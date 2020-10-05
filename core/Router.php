@@ -3,7 +3,6 @@ namespace core;
 use controllers;
 
 class Router {
-
     protected $conn;
     protected $routes = [
         'GET' => [],
@@ -13,7 +12,7 @@ class Router {
     ];
     public $route;
 
-    public function __construct(\PDO $conn) {
+    public function __construct($conn) {
         $this->conn = $conn;
     }
     public function loadRoutes($routes){
@@ -56,7 +55,6 @@ class Router {
                 $matches = Array();
 
                 // check if the current request matches the expression
-                //echo "$pattern||$uri|||$matches|||";
                 if(preg_match($pattern, $uri, $matches)){
                     // remove the first match
                     array_shift($matches);
@@ -70,10 +68,9 @@ class Router {
             echo "The exception code is: " . $e->getCode();
         }
 
-
     }
 
-    protected function route($callback, array $matches=[]){
+    protected function route($callback, $matches=[]){
 
         try{
             if(is_callable($callback)){

@@ -5,12 +5,17 @@ require_once __DIR__.'/core/bootstrap.php';
 $appDatabase = require 'config/app.database.php';
 $appRoutes = require 'config/app.routes.php';
 
-
+$conn = db\Db::create($appDatabase)->getConn();
+/*
 $Database = new db\Database($appDatabase);
-$conn = $Database->getConn();
+$conn = $Database->getConn();*/
+
+
+
 $router = new core\Router($conn);
 $router->loadRoutes($appRoutes['routes']);
 $controller = $router->dispatch();
+
 
 //http_response_code(200);
 
