@@ -2,8 +2,9 @@
 namespace app\controllers;
 use \PDO;
 use app\models\Beer;
+use app\interfaces\BeerInterface;
 
-class BeerController {
+class BeerController implements BeerInterface {
     protected $conn;
     protected $Beer;
     private $data;

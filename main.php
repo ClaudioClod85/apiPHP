@@ -8,7 +8,6 @@ $appRoutes = require 'config/app.routes.php';
 
 $Database = new db\Database($appDatabase);
 $conn = $Database->getConn();
-
 $router = new core\Router($conn);
 $router->loadRoutes($appRoutes['routes']);
 $controller = $router->dispatch();

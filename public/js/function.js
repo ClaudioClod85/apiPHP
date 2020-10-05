@@ -34,7 +34,7 @@ var app1 = new Vue({
             .then(response => {
                 if (response.status != "200") alert("ATTENZIONE: Status "+response.status);
                 this.beerList = response.data.beer;
-                //console.log(response.data);
+                console.log(response.data);
 
             })
             .catch((error) => {
@@ -59,7 +59,7 @@ var app1 = new Vue({
                 if (response.status != "200") alert("ATTENZIONE: Status "+response.status);
                 this.resetField();
                 this.getAxios();
-                if (response.data.beerId > 1) alert("Record creato correttamente id:" + response.data.beerId);
+                if (response.data.beerId >= 1) alert("Record creato correttamente id:" + response.data.beerId);
                 else alert("Errore nella creazione del record");
                 //console.log(response.data);
 
@@ -104,7 +104,8 @@ var app1 = new Vue({
                         if (response.data.countBeer == 1) alert("Record modificato correttamente");
                         else alert("Errore durante la modificato del record");
                         this.getAxios();
-                        console.log(response.data)
+                        //console.log(response.data)
+                        this.resetField();
                     })
                     .catch((error) => {
                         throw error.response.data
